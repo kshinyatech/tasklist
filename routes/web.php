@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'TasksContraller@index');
+
+Route::resource('tasks', 'TasksContraller');
