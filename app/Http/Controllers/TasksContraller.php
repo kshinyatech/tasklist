@@ -115,9 +115,6 @@ class TasksContraller extends Controller
         // タスクを更新
         $task->status = $request->status;     //追加
         $task->content = $request->content;
-        
-        dd($task);
-        
         $task->save();
         
         //トップページへリダイレクトさせる
