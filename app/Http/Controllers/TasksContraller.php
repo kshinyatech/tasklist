@@ -16,7 +16,7 @@ class TasksContraller extends Controller
     public function index()
     {
         // タスク一覧を取得
-        $tasks = Task::all();
+        $tasks = Task::orderBy('id', 'desc')->paginate(25);
         
         // タスク一覧ビューでそれを表示
         return view('tasks.index', ['tasks' => $tasks,]);
@@ -101,6 +101,8 @@ class TasksContraller extends Controller
      */
     public function update(Request $request, $id)
     {
+        
+        
         // バリデーション
         $request->validate([
             'status' => 'required|max:255',  //追加
@@ -113,6 +115,9 @@ class TasksContraller extends Controller
         // タスクを更新
         $task->status = $request->status;     //追加
         $task->content = $request->content;
+        
+        dd($task);
+        
         $task->save();
         
         //トップページへリダイレクトさせる
